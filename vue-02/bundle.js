@@ -58,14 +58,14 @@
 	        newTodo: '',
 	        todoList: []
 	    },
-	    created: function created() {
-	        var _this = this;
-
-	        var i = 0;
-	        setInterval(function () {
-	            _this.newTodo = i; // this.newTodo 就是 data.newTodo，实际上 this.newTodo 是 data.newTodo 的代理
-	            i += 1;
-	        }, 1000);
+	    methods: {
+	        addTodo: function addTodo() {
+	            this.todoList.push({
+	                title: this.newTodo,
+	                createdAt: new Date()
+	            });
+	            console.log(this.todoList);
+	        }
 	    }
 	});
 

@@ -7,7 +7,7 @@
 <body>
   <div id="app">
     <div class="newTask">
-      <input type="text" v-model="newTodo">
+      <input type="text" v-model="newTodo" @keypress.enter="addTodo">
     </div>
     <ol class="todos">
     </ol>
