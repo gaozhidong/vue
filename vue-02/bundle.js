@@ -59,12 +59,14 @@
 	        todoList: []
 	    },
 	    methods: {
+	        //添加todo
 	        addTodo: function addTodo() {
 	            this.todoList.push({
 	                title: this.newTodo,
 	                createdAt: new Date()
-	            });
-	            console.log(this.todoList);
+	            }
+	            //console.log(this.todoList)
+	            );this.newTodo = ''; //变成空
 	        }
 	    }
 	});
