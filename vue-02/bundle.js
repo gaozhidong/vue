@@ -58,16 +58,35 @@
 	        newTodo: '',
 	        todoList: []
 	    },
+	    created: function created() {
+	        var _this = this;
+
+	        //保存代办事项
+	        // onbeforeunload文档：https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onbeforeunload
+	        window.onbeforeunload = function () {
+	            var dataString = JSON.stringify(_this.todoList // JSON 文档: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON
+	            );window.localStorage.setItem('myTodos', dataString // 看文档https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage
+	            );
+	        };
+
+	        var oldDataString = window.localStorage.getItem('myTodos');
+	        var oldData = JSON.parse(oldDataString);
+	        this.todoList = oldData || [];
+	    },
 	    methods: {
-	        //添加todo
 	        addTodo: function addTodo() {
 	            this.todoList.push({
 	                title: this.newTodo,
 	                createdAt: new Date(),
-	                done: false
-	            }
-	            //console.log(this.todoList)
-	            );this.newTodo = ''; //变成空
+	                done: false // 添加一个 done 属性
+	            });
+	            this.newTodo = '';
+	        },
+	        // 加了👇这个函数
+	        removeTodo: function removeTodo(todo) {
+	            var index = this.todoList.indexOf(todo // Array.prototype.indexOf 是 ES 5 新加的 API
+	            );this.todoList.splice(index, 1 // 不懂 splice？赶紧看 MDN 文档！
+	            );
 	        }
 	    }
 	});
