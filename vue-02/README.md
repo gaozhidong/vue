@@ -10,3 +10,6 @@
 
     在用户关闭页面前，将数据保存在 localStorage 里
     在用户进入页面后，立刻读取 localStorage
+
+
+## 预览地址[https://gaozhidong.github.io/vue/vue-02/page.html](https://gaozhidong.github.io/vue/vue-02/page.html)
