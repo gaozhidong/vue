@@ -1,11 +1,32 @@
 import Vue from 'vue'
+import AV from 'leancloud-storage'
+
+var APP_ID = '5JByJXWAj0vic0v9qs2qPpxO-gzGzoHsz';
+var APP_KEY = '1MeAteFvMcvhLAgH4cxxUbig';
+AV.init({
+    appId: APP_ID,
+    appKey: APP_KEY
+});
+
+
+var TestObject = AV.Object.extend('TestObject');
+var testObject = new TestObject();
+testObject.save({
+    words: 'Hello World!'
+}).then(function (object) {
+    alert('LeanCloud Rocks!');
+})
 
 var app = new Vue({
     el: '#app',
     data: {
         newTodo: '',
         todoList: [],
-        actionType: 'signUp'
+        actionType: 'signUp',
+        formData: {
+            username: '',
+            password: ''
+        }
     },
     created: function () {//保存代办事项
         // onbeforeunload文档：https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onbeforeunload
