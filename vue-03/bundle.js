@@ -63,14 +63,6 @@
 	    appKey: APP_KEY
 	});
 
-	var TestObject = _leancloudStorage2.default.Object.extend('TestObject');
-	var testObject = new TestObject();
-	testObject.save({
-	    words: 'Hello World!'
-	}).then(function (object) {
-	    alert('LeanCloud Rocks!');
-	});
-
 	var app = new _vue2.default({
 	    el: '#app',
 	    data: {
@@ -111,6 +103,15 @@
 	            var index = this.todoList.indexOf(todo // Array.prototype.indexOf 是 ES 5 新加的 API
 	            );this.todoList.splice(index, 1 // 不懂 splice？赶紧看 MDN 文档！
 	            );
+	        },
+	        signUp: function signUp() {
+	            //注册
+	            var user = new _leancloudStorage2.default.User();
+	            user.setUsername(this.formData.username);
+	            user.setPassword(this.formData.password);
+	            user.signUp().then(function (loginedUser) {
+	                console.log(loginedUser);
+	            }, function (error) {});
 	        }
 	    }
 	});
