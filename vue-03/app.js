@@ -4,7 +4,8 @@ var app = new Vue({
     el: '#app',
     data: {
         newTodo: '',
-        todoList: []
+        todoList: [],
+        actionType: 'signUp'
     },
     created: function () {//保存代办事项
         // onbeforeunload文档：https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onbeforeunload
