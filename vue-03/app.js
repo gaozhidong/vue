@@ -26,11 +26,11 @@ var app = new Vue({
             let dataString = JSON.stringify(this.todoList) // JSON 文档: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON
             window.localStorage.setItem('myTodos', dataString) // 看文档https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage
         }
-
         let oldDataString = window.localStorage.getItem('myTodos')
         let oldData = JSON.parse(oldDataString)
         this.todoList = oldData || []
 
+        this.currentUser = this.getCurrentUser();
     },
     methods: {
         addTodo: function () {
@@ -64,8 +64,13 @@ var app = new Vue({
             });
         },
         getCurrentUser: function () {//获取当前登录的用户  AV.User.current() 
-            let { id, createdAt, attributes: { username } } = AV.User.current();
-            return { id, username, createdAt }
+            let current = AV.User.current();
+            if (current) {
+                let { id, createdAt, attributes: { username } } = current;
+                return { id, username, createdAt }
+            } else {
+                return null
+            }
         },
         logout: function () {//登出功能
             AV.User.logOut();

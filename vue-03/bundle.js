@@ -85,10 +85,11 @@
 	            );window.localStorage.setItem('myTodos', dataString // 看文档https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage
 	            );
 	        };
-
 	        var oldDataString = window.localStorage.getItem('myTodos');
 	        var oldData = JSON.parse(oldDataString);
 	        this.todoList = oldData || [];
+
+	        this.currentUser = this.getCurrentUser();
 	    },
 	    methods: {
 	        addTodo: function addTodo() {
@@ -129,12 +130,23 @@
 	            });
 	        },
 	        getCurrentUser: function getCurrentUser() {
-	            var _AV$User$current = _leancloudStorage2.default.User.current(),
-	                id = _AV$User$current.id,
-	                createdAt = _AV$User$current.createdAt,
-	                username = _AV$User$current.attributes.username;
+	            //获取当前登录的用户  AV.User.current() 
+	            var current = _leancloudStorage2.default.User.current();
+	            if (current) {
+	                var id = current.id,
+	                    createdAt = current.createdAt,
+	                    username = current.attributes.username;
 
-	            return { id: id, username: username, createdAt: createdAt };
+	                return { id: id, username: username, createdAt: createdAt };
+	            } else {
+	                return null;
+	            }
+	        },
+	        logout: function logout() {
+	            //登出功能
+	            _leancloudStorage2.default.User.logOut();
+	            this.currentUser = null;
+	            window.localtion.reload();
 	        }
 	    }
 	});
