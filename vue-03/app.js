@@ -52,20 +52,25 @@ var app = new Vue({
             user.setPassword(this.formData.password);
             user.signUp().then((loginedUser) => {
                 this.currentUser = this.getCurrentUser()
-            },(error) => {
+            }, (error) => {
                 alert('注册失败')
             });
         },
         login: function () {//登录
             AV.User.logIn(this.formData.username, this.formData.password).then((loginedUser) => {
                 this.currentUser = this.getCurrentUser()
-            },(error)=>{
+            }, (error) => {
                 alert("登录失败")
             });
         },
-        getCurrentUser:function(){
-            let {id,createdAt,attributes:{username}} = AV.User.current();
-            return{id,username,createdAt}
+        getCurrentUser: function () {//获取当前登录的用户  AV.User.current() 
+            let { id, createdAt, attributes: { username } } = AV.User.current();
+            return { id, username, createdAt }
+        },
+        logout: function () {//登出功能
+            AV.User.logOut();
+            this.currentUser = null;
+            window.localtion.reload();
         }
     }
 })   
