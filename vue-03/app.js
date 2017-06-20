@@ -62,6 +62,10 @@ var app = new Vue({
             },(error)=>{
                 alert("登录失败")
             });
+        },
+        getCurrentUser:function(){
+            let {id,createdAt,attributes:{username}} = AV.User.current();
+            return{id,username,createdAt}
         }
     }
 })   

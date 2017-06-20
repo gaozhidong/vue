@@ -127,6 +127,14 @@
 	            }, function (error) {
 	                alert("登录失败");
 	            });
+	        },
+	        getCurrentUser: function getCurrentUser() {
+	            var _AV$User$current = _leancloudStorage2.default.User.current(),
+	                id = _AV$User$current.id,
+	                createdAt = _AV$User$current.createdAt,
+	                username = _AV$User$current.attributes.username;
+
+	            return { id: id, username: username, createdAt: createdAt };
 	        }
 	    }
 	});
