@@ -14,6 +14,7 @@ var app = new Vue({
         newTodo: '',
         todoList: [],
         actionType: 'signUp',
+        currentUser: null,
         formData: {
             username: '',
             password: ''
@@ -49,9 +50,17 @@ var app = new Vue({
             let user = new AV.User();
             user.setUsername(this.formData.username);
             user.setPassword(this.formData.password);
-            user.signUp().then(function (loginedUser) {
-                console.log(loginedUser);
-            }, function (error) {
+            user.signUp().then((loginedUser) => {
+                this.currentUser = this.getCurrentUser()
+            },(error) => {
+                alert('注册失败')
+            });
+        },
+        login: function () {//登录
+            AV.User.logIn(this.formData.username, this.formData.password).then((loginedUser) => {
+                this.currentUser = this.getCurrentUser()
+            },(error)=>{
+                alert("登录失败")
             });
         }
     }

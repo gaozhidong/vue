@@ -69,6 +69,7 @@
 	        newTodo: '',
 	        todoList: [],
 	        actionType: 'signUp',
+	        currentUser: null,
 	        formData: {
 	            username: '',
 	            password: ''
@@ -105,13 +106,27 @@
 	            );
 	        },
 	        signUp: function signUp() {
+	            var _this2 = this;
+
 	            //注册
 	            var user = new _leancloudStorage2.default.User();
 	            user.setUsername(this.formData.username);
 	            user.setPassword(this.formData.password);
 	            user.signUp().then(function (loginedUser) {
-	                console.log(loginedUser);
-	            }, function (error) {});
+	                _this2.currentUser = _this2.getCurrentUser();
+	            }, function (error) {
+	                alert('注册失败');
+	            });
+	        },
+	        login: function login() {
+	            var _this3 = this;
+
+	            //登录
+	            _leancloudStorage2.default.User.logIn(this.formData.username, this.formData.password).then(function (loginedUser) {
+	                _this3.currentUser = _this3.getCurrentUser();
+	            }, function (error) {
+	                alert("登录失败");
+	            });
 	        }
 	    }
 	});
