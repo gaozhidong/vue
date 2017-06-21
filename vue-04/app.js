@@ -21,28 +21,18 @@ var app = new Vue({
         }
     },
     created: function () {//保存代办事项
-        // onbeforeunload文档：https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onbeforeunload
-        /*  window.onbeforeunload = () => {
-              let dataString = JSON.stringify(this.todoList) // JSON 文档: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON
-  
-              var AVTodos = AV.Object.extend('AllTodos');
-              var avTodos = new AVTodos();
-              avTodos.set('content', dataString);
-              avTodos.save().then(function (todo) {
-                  // 成功保存之后，执行其他逻辑.
-                  console.log('保存成功');
-              }, function (error) {
-                  // 异常处理
-                  console.error('保存失败');
-              });
-  
-          }
-  
-          let oldDataString = window.localStorage.getItem('myTodos')
-          let oldData = JSON.parse(oldDataString)
-          this.todoList = oldData || []*/
 
         this.currentUser = this.getCurrentUser();
+        //获取User的AllTodos
+        if (this.currentUser) {
+            var query = new AV.Query('AllTodos');
+            query.find()
+                .then(function (todos) {
+                    console.log(todos)
+                }, function (error) {
+                    console.error(error)
+                })
+        }
     },
     methods: {
         saveTodos: function () {//保存todo
@@ -52,7 +42,7 @@ var app = new Vue({
             var acl = new AV.ACL()
             acl.setReadAccess(AV.User.current(), true) // 只有这个 user 能读
             acl.setWriteAccess(AV.User.current(), true) // 只有这个 user 能写
-           
+
             avTodos.set('content', dataString);
             avTodos.setACL(acl) // 设置访问控制
             avTodos.save().then(function (todo) {
