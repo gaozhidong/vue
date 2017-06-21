@@ -82,7 +82,17 @@
 	        // onbeforeunload文档：https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onbeforeunload
 	        window.onbeforeunload = function () {
 	            var dataString = JSON.stringify(_this.todoList); // JSON 文档: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON
-	            window.localStorage.setItem('myTodos', dataString); // 看文档https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage
+
+	            var AVTodos = _leancloudStorage2.default.Object.extend('AllTodos');
+	            var avTodos = new AVTodos();
+	            avTodos.set('content', dataString);
+	            avTodos.save().then(function (todo) {
+	                // 成功保存之后，执行其他逻辑.
+	                console.log('保存成功');
+	            }, function (error) {
+	                // 异常处理
+	                console.error('保存失败');
+	            });
 	        };
 	        var oldDataString = window.localStorage.getItem('myTodos');
 	        var oldData = JSON.parse(oldDataString);
