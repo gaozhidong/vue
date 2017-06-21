@@ -119,9 +119,9 @@
 	            avTodos.setACL(acl); // 设置访问控制
 	            avTodos.save().then(function (todo) {
 	                _this2.todoList.id = todo.id; // 一定要记得把 id 挂到 this.todoList 上，否则下次就不会调用 updateTodos 了
-	                alert('保存成功');
+	                console.log('保存成功');
 	            }, function (error) {
-	                alert('保存失败');
+	                console.log('保存失败');
 	            });
 	        },
 	        saveOrUpdateTodos: function saveOrUpdateTodos() {
@@ -157,7 +157,7 @@
 	            user.signUp().then(function (loginedUser) {
 	                _this3.currentUser = _this3.getCurrentUser();
 	            }, function (error) {
-	                alert('注册失败');
+	                console.log('注册失败');
 	            });
 	        },
 	        login: function login() {
@@ -167,7 +167,7 @@
 	            _leancloudStorage2.default.User.logIn(this.formData.username, this.formData.password).then(function (loginedUser) {
 	                _this4.currentUser = _this4.getCurrentUser();
 	            }, function (error) {
-	                alert("登录失败");
+	                console.log("登录失败");
 	            });
 	        },
 	        getCurrentUser: function getCurrentUser() {
