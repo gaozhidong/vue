@@ -99,10 +99,16 @@
 	    },
 	    methods: {
 	        saveTodos: function saveTodos() {
+	            //保存todo
 	            var dataString = JSON.stringify(this.todoList);
 	            var AVTodos = _leancloudStorage2.default.Object.extend('AllTodos');
 	            var avTodos = new AVTodos();
+	            var acl = new _leancloudStorage2.default.ACL();
+	            acl.setReadAccess(_leancloudStorage2.default.User.current(), true); // 只有这个 user 能读
+	            acl.setWriteAccess(_leancloudStorage2.default.User.current(), true); // 只有这个 user 能写
+
 	            avTodos.set('content', dataString);
+	            avTodos.setACL(acl); // 设置访问控制
 	            avTodos.save().then(function (todo) {
 	                alert('保存成功');
 	            }, function (error) {
