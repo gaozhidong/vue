@@ -76,25 +76,27 @@
 	        }
 	    },
 	    created: function created() {
-	        var _this = this;
-
 	        //保存代办事项
 
 	        this.currentUser = this.getCurrentUser();
-	        //获取User的AllTodos
-	        if (this.currentUser) {
-	            var query = new _leancloudStorage2.default.Query('AllTodos');
-	            query.find().then(function (todos) {
-	                var avAllTodos = todos[0]; // 因为理论上 AllTodos 只有一个，所以我们取结果的第一项
-	                var id = avAllTodos.id;
-	                _this.todoList = JSON.parse(avAllTodos.attributes.content); // 为什么有个 attributes？因为我从控制台看到的
-	                _this.todoList.id = id; // 为什么给 todoList 这个数组设置 id？因为数组也是对象啊
-	            }, function (error) {
-	                console.error(error);
-	            });
-	        }
+	        this.fetchTodos(); // 将原来的一坨代码取一个名字叫做 fetchTodos
 	    },
 	    methods: {
+	        fetchTodos: function fetchTodos() {
+	            var _this = this;
+
+	            if (this.currentUser) {
+	                var query = new _leancloudStorage2.default.Query('AllTodos');
+	                query.find().then(function (todos) {
+	                    var avAllTodos = todos[0]; // 因为理论上 AllTodos 只有一个，所以我们取结果的第一项
+	                    var id = avAllTodos.id;
+	                    _this.todoList = JSON.parse(avAllTodos.attributes.content); // 为什么有个 attributes？因为我从控制台看到的
+	                    _this.todoList.id = id; // 为什么给 todoList 这个数组设置 id？因为数组也是对象啊
+	                }, function (error) {
+	                    console.error(error);
+	                });
+	            }
+	        },
 	        updateTodos: function updateTodos() {
 	            // 想要知道如何更新对象，先看文档 https://leancloud.cn/docs/leanstorage_guide-js.html#更新对象
 	            var dataString = JSON.stringify(this.todoList); // JSON 在序列化这个有 id 的数组的时候，会得出怎样的结果？
@@ -166,6 +168,7 @@
 	            //登录
 	            _leancloudStorage2.default.User.logIn(this.formData.username, this.formData.password).then(function (loginedUser) {
 	                _this4.currentUser = _this4.getCurrentUser();
+	                _this4.fetchTodos(); // 登录成功后读取 todos
 	            }, function (error) {
 	                console.log("登录失败");
 	            });
