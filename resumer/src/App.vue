@@ -1,14 +1,17 @@
 <template>
   <div id="app">
   
-    <p>你好</p>
+    <p>{{text}}</p>
   
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data: {
+    text: '你好'
+  }
 }
 </script>
 
