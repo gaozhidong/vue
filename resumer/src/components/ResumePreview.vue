@@ -1,17 +1,17 @@
 <template>
-    <div id="resumePreview">
-        I am resumePreview
-    </div>
+	<div id="resumePreview">
+		I am resumePreview
+	</div>
 </template>
 
 <script>
 export default {
-    name: 'ResumePreview'
+	name: 'ResumePreview'
 }
 </script>
 
 <style>
 #resumePreview {
-    color: blue;
+	color: blue;
 }
 </style>
