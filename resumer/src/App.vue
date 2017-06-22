@@ -9,8 +9,10 @@
 <script>
 export default {
   name: 'app',
-  data: {
-    text: '你好'
+  data: function () {
+    return {
+      text: '你好'
+    }
   }
 }
 </script>
