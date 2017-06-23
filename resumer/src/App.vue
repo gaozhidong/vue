@@ -39,9 +39,11 @@ export default {
   flex-direction: column;
   background: #EAEBEC;
 }
+
 .page>main {
   flex-grow: 1;
 }
+
 .page>main {
   min-width: 1024px;
   max-width: 1440px;
@@ -49,11 +51,16 @@ export default {
   margin-bottom: 16px;
   display: flex;
   justify-content: space-around;
+  width: 100%;
+  /* 试试不加这句会怎样 */
+  align-self: center;
 }
+
 #resumeEditor {
   width: 35%;
   background: #444;
 }
+
 #resumePreview {
   width: 61.66667%;
   background: #777;
