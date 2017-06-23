@@ -24,4 +24,5 @@ npm run unit
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+遇到的问题 
+如果打包后路径出错  把 config下的index.js  assetsPublicPath :'/'  改为 assetsPublicPath :'./'
