@@ -50,7 +50,8 @@ export default {
   margin-top: 16px;
   margin-bottom: 16px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 16px;
   width: 100%;
   /* 试试不加这句会怎样 */
   align-self: center;
@@ -62,7 +63,8 @@ export default {
 }
 
 #resumePreview {
-  width: 61.66667%;
+  flex-grow: 1;
+  margin-left: 16px;
   background: #777;
 }
 </style>
