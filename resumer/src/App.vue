@@ -37,6 +37,7 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #EAEBEC;
 }
 .page>main {
   flex-grow: 1;
@@ -44,7 +45,8 @@ export default {
 .page>main {
   min-width: 1024px;
   max-width: 1440px;
-  margin: 0;
+  margin-top: 16px;
+  margin-bottom: 16px;
   display: flex;
   justify-content: space-around;
 }
