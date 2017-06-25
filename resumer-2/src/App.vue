@@ -18,7 +18,7 @@ import 'normalize.css/normalize.css'
 import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
 import ResumePreview from './components/ResumePreview'
-
+import icons from './assets/icons'
 
 export default {
   name: 'app',
@@ -27,7 +27,10 @@ export default {
       text: '你好'
     }
   },
-  components: { Topbar, ResumeEditor, ResumePreview }
+  components: { Topbar, ResumeEditor, ResumePreview },
+  created() {
+    document.body.insertAdjacentHTML('afterbegin', icons) //
+  }
 
 }
 </script>
