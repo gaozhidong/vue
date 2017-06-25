@@ -15,6 +15,9 @@ npm run dev
 npm run build
 
 ```
+
+## 1. 使用scss
+
 > 为了让 node-sass 顺利安装，请在先在命令运行
 ```js
 export SASS_BINARY_SITE="https://npm.taobao.org/mirrors/node-sass"
@@ -22,6 +25,7 @@ export SASS_BINARY_SITE="https://npm.taobao.org/mirrors/node-sass"
 npm install --save  sass-loader node-sass
 
 ```
+
 
 
 遇到的问题 
