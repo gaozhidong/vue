@@ -15,13 +15,14 @@ npm run dev
 npm run build
 
 ```
+# 使用 Vuex 管理数据
 
 ## 预览功能
-#### ResumePreview的数据(data) 从哪来？ 
+### ResumePreview的数据(data) 从哪来？ 
 
 从ResumeEditor来
 
-#### 怎么拿到数据
+### 怎么拿到数据
 
 那么最傻的办法就是在 ResumePreview 里面去读 ResumeEditor 的 data。
 
