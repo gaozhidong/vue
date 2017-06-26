@@ -22,3 +22,6 @@ npm run build
 ## 使用 Vuex 思想重构
 1. 双向绑定改为单向绑定
 2. 所有数据操作汇总到 store
+
+引入 object-path，方便查找 resume 的属性
+npm install --save object-path
