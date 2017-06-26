@@ -19,6 +19,9 @@ npm run build
 ## 1. 使用scss
 
 > 为了让 node-sass 顺利安装，请在先在命令运行
+
+## 2. 实现导航功能和表单
+
 ```js
 export SASS_BINARY_SITE="https://npm.taobao.org/mirrors/node-sass"
 
