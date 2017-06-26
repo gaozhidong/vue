@@ -3,7 +3,6 @@ import Vue from 'vue' // 思考：在多个文件 import vue ，会怎样
 import objectPath from "object-path"
 
 Vue.use(Vuex) // 不写这句话浏览器控制台就会报错，于是我就写了
-
 export default new Vuex.Store({
   state: {
     selected: 'profile',
@@ -38,24 +37,24 @@ export default new Vuex.Store({
         },
       ],
       profile: {
-        name: '高某某',
+        name: '方某某',
         city: '大城市铁岭',
-        title: '自由职业',
+        title: '首席装逼师',
         birthday: '1990-01-01'
       },
       workHistory: [{
           company: '鸡飞狗跳公司',
           content: `公司总部设在XXXX区，先后在北京、上海成立分公司。专注于移动XXX领域，主打产品XXXXX，它将资讯、报纸、杂志、图片、微信等众多内容，按照用户意愿聚合到一起，实现深度个性化 定制。
-我的主要工作如下:
-1. 完成既定产品需求。
-2. 修复 bug。`
+ 我的主要工作如下:
+ 1. 完成既定产品需求。
+ 2. 修复 bug。`
         },
         {
           company: '狗急跳墙责任有限公司',
           content: `公司总部设在XXXX区，先后在北京、上海成立分公司。专注于移动XXX领域，主打产品XXXXX，它将资讯、报纸、杂志、图片、微信等众多内容，按照用户意愿聚合到一起，实现深度个性化 定制。
-我的主要工作如下:
-1. 完成既定产品需求。
-2. 修复 bug`
+ 我的主要工作如下:
+ 1. 完成既定产品需求。
+ 2. 修复 bug`
         },
       ],
       education: [{
@@ -76,12 +75,11 @@ export default new Vuex.Store({
         },
       ],
       awards: [{
-          name: 'awards A',
-          content: '文字'
+          name: '再来十瓶',
+          content: '连续十次获得「再来一瓶」奖励'
         },
         {
-          name: 'awards B',
-          content: '文字'
+          name: '三好学生'
         },
       ],
       contacts: [{

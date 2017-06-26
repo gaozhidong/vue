@@ -20,7 +20,7 @@
 
 <script>
 import MyDialog from './MyDialog';
-import SignUpForm from './SignUpFrom'
+import SignUpForm from './SignUpForm'
 export default {
   name: 'Topbar',
   data() {
