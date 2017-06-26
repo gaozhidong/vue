@@ -30,85 +30,82 @@
 </template>
 
 <script>
-export default {
-  name: 'ResumeEditor',
-  computed: {
-    selected: {
-      get() {
-        return this.$store.state.selected
+  export default {
+    name: 'ResumeEditor',
+    computed: {
+      selected:{
+        get(){
+          return this.$store.state.selected
+        },
+        set(value){
+          return this.$store.commit('switchTab', value)
+        }
       },
-      set(value) {
-        return this.$store.commit('switchTab', value)
+      resume (){
+        return this.$store.state.resume
       }
     },
-    resume() {
-      return this.$store.state.selected;
+    methods: {
     }
-  },
-  methods: {
   }
-}
 </script>
 
 <style lang="scss" scoped>
-#resumeEditor {
-  background: #ffffff;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: row;
-  overflow: auto;
-  >nav {
-    width: 80px;
-    background: black;
-    color: white;
-    >ol {
-      >li {
-        height: 48px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 16px;
-        margin-bottom: 16px;
-        &.active {
-          background: white;
-          color: black;
+  #resumeEditor{
+    background:#ffffff;
+    box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    > nav{
+      width: 80px;
+      background: black;
+      color: white;
+      > ol {
+        > li{
+          height: 48px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 16px;
+          margin-bottom: 16px;
+          &.active{
+            background: white;
+            color: black;
+          }
         }
       }
     }
-  }
-  >.panels {
-    flex-grow: 1;
-    >li {
-      padding: 24px;
+    > .panels{
+      flex-grow: 1;
+      > li {
+        padding: 24px;
+      }
+    }
+    svg.icon{
+      width: 24px; // 原设计稿 32px 不好看，改成 24px
+      height: 24px;
     }
   }
-  svg.icon {
-    width: 24px; // 原设计稿 32px 不好看，改成 24px
-    height: 24px;
+  ol{
+    list-style: none;
   }
-}
-
-ol {
-  list-style: none;
-}
-
-.resumeField {
-  >label {
-    display: block;
+  .resumeField{
+    > label{
+      display: block;
+    }
+    input[type=text]{
+      margin: 16px 0;
+      border: 1px solid #ddd;
+      box-shadow:inset 0 1px 3px 0 rgba(0,0,0,0.25);
+      width: 100%;
+      height: 40px;
+      padding: 0 8px;
+    }
   }
-  input[type=text] {
-    margin: 16px 0;
-    border: 1px solid #ddd;
-    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
-    width: 100%;
-    height: 40px;
-    padding: 0 8px;
+  hr{
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 24px 0;
   }
-}
-
-hr {
-  border: none;
-  border-top: 1px solid #ddd;
-  margin: 24px 0;
-}
 </style>
