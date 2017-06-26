@@ -25,10 +25,6 @@
           <input type="text" v-model="resume[item.field][key]">
         </div>
       </li>
-      <li>
-        {{count}}
-        <button @click="add"></button>
-      </li>
     </ol>
   </div>
 </template>
@@ -37,15 +33,12 @@
 export default {
   name: 'ResumeEditor',
   computed: {
-    count() {
-      return this.$store.state.count;
-    },
-    selected:{
+    selected: {
       get() {
         return this.$store.state.selected
-      } ,
+      },
       set(value) {
-        return this.$store.commit('switchTab',value)
+        return this.$store.commit('switchTab', value)
       }
     },
     resume() {
@@ -53,9 +46,6 @@ export default {
     }
   },
   methods: {
-    add() {
-      this.$store.commit('increment')
-    }
   }
 }
 </script>
