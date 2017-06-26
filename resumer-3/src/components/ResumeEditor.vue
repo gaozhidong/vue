@@ -40,10 +40,15 @@ export default {
     count() {
       return this.$store.state.count;
     },
-    selected(){
-      return this.$store.state.selected;
+    selected:{
+      get() {
+        return this.$store.state.selected
+      } ,
+      set(value) {
+        return this.$store.commit('switchTab',value)
+      }
     },
-    resume(){
+    resume() {
       return this.$store.state.selected;
     }
   },
