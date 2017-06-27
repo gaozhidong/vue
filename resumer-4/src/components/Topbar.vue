@@ -9,18 +9,19 @@
       </div>
       <div v-else class="userActions">
         <a class="button primary" href="#" @click.prevent="signUpDialogVisible = true">注册</a>
-        <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-          <SignUpForm @success="signIn($event)" />
-        </MyDialog>
+  
         <a class="button" href="#" @click.prevent="signInDialogVisible = true">登录</a>
-        <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
-          <SignInForm />
-        </MyDialog>
+  
       </div>
       <button class="button primary">保存</button>
       <button class="button">预览</button>
     </div>
-  
+    <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+      <SignUpForm @success="signIn($event)" />
+    </MyDialog>
+    <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
+      <SignInForm />
+    </MyDialog>
   </div>
 </template>
 
@@ -46,7 +47,7 @@ export default {
     }
   },
   components: {
-    MyDialog, SignUpForm,SignInForm
+    MyDialog, SignUpForm, SignInForm
   },
   methods: {
     signOut() {
@@ -111,7 +112,7 @@ export default {
   display: flex;
   .userActions {
     margin-right: 3em;
-    .welcome{
+    .welcome {
       margin-right: .5em;
     }
   }
