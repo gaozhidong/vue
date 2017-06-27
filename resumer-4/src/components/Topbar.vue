@@ -20,7 +20,7 @@
       <SignUpForm @success="signIn($event)" />
     </MyDialog>
     <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
-      <SignInForm />
+      <SignInForm  @success="signIn($event)"/>
     </MyDialog>
   </div>
 </template>
@@ -54,8 +54,9 @@ export default {
       AV.User.logOut()
       this.$store.commit('removeUser')
     },
-    login(user) {
+    sigIn(user) {
       this.signUpDialogVisible = false
+      this.signInDialogVisible = false
       this.$store.commit('setUser', user)
     }
   }
