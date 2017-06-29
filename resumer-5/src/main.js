@@ -6,7 +6,7 @@ import router from './router'
 import VueI18n from 'vue-i18n'
 import il8n from './il8n'
 
-var locales = il8n;
+var locales = i18n;
 
 Vue.use(VueI18n)
 Vue.config.lang = 'zh_CN'
