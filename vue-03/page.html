@@ -1,96 +1,82 @@
+<!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset=utf-8>
-  <style>
-    body {
-      background: #ccc;
-    }
-
-    #app {
-      max-width: 600px;
-      margin: 50px auto;
-      text-align: center;
-    }
-
-    #app>h1 {
-      text-shadow: 4px 4px 4px rgba(255, 0, 0, 0.4);
-      color: #fff;
-      font-size: 60px;
-    }
-
-    .newTask>input {
-      display: inline-block;
-      width: 500px;
-      height: 30px;
-      box-shadow: 0 0 0 2px #ccc;
-    }
-
-    .todos {
-      width: 480px;
-      margin: 30px auto;
-    }
-
-    .todos>li {
-      text-align: left;
-    }
-  </style>
+    <meta charset=utf-8>
+    <title>ToDoList</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-
 <body>
-  <div id="app">
-    <section id="signInAndSignUp" v-if="!currentUser">
-      <div>
-        <label><input type="radio" name="type" v-model="actionType" value="signUp">注册</label>
-        <label><input type="radio" name="type" v-model="actionType" value="login">登入</label>
-      </div>
-      <div class="signUp" v-if="actionType === 'signUp'">
-        <form @submit.prevent=signUp>
-          <div class="formRow">
-            用户名<input type="text" v-model="formData.username">
-          </div>
-          <div class="formRow">
-            密码<input type="password" v-model="formData.password">
-          </div>
-          <div class="formActions">
-            <input type="submit" value="注册">
-          </div>
-        </form>
-      </div>
-      <div class="login" v-if="actionType=='login'">
-        <form @submit.prevent="login">
-          <div class="formRow">
-            用户名<input type="text" v-model="formData.username">
-          </div>
-          <div class="formRow">
-            密码<input type="password" v-model="formData.password">
-          </div>
-          <div class="formActions">
-            <input type="submit" value="登入">
-          </div>
-        </form>
-      </div>
-
+<div id="app">
+    <section id="signinup" v-if="!currentUser">
+        <div class="signlogin-ct">
+            <h1>ToDoList</h1>
+            <div class="signlogin-wrapper">
+                <div class="sign-ct">
+                    <label :class="{active:actionType === 'signUp'}"><input type="radio" name="type" value="signUp" v-model="actionType">注册</label>
+                    <label :class="{active:actionType === 'login'}"><input type="radio" name="type" value="login" v-model="actionType">登录</label>
+                </div>
+                <div class="signup" v-if="actionType ==='signUp'">
+                    <form @submit.prevent="signUp">
+                        <div class="formrow">
+                            <p>用户名</p>
+                            <input type="text" v-model="formData.username" placeholder="请输入用户名">
+                        </div>
+                        <div class="formrow">
+                            <p>密码</p>
+                            <input type="password" v-model="formData.password" placeholder="请输入密码">
+                        </div>
+                        <div class="formacitons">
+                            <input type="submit" value="注册">
+                        </div>
+                    </form>
+                </div>
+                <div class="login" v-if="actionType ==='login'">
+                    <form @submit.prevent="login">
+                        <div class="formrow">
+                            <p>用户名</p>
+                            <input type="text" v-model="formData.username" placeholder="请输入用户名">
+                        </div>
+                        <div class="formrow">
+                            <p>密码</p>
+                            <input type="password" v-model="formData.password" placeholder="请输入密码">
+                        </div>
+                        <div class="formacitons">
+                            <input type="submit" value="登入">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
-
     <section id="todo" v-if="currentUser">
-      <p><button @click="logout">登出</button></p>
-      <div class="newTask">
-        <input type="text" v-model="newTodo" @keypress.enter="addTodo">
-      </div>
-      <ol class="todos">
-        <li v-for="todo in todoList">
-          <input type="checkbox" v-model="todo.done"> {{ todo.title }}
-
-          <span v-if="todo.done">已完成</span>
-          <span v-else>未完成</span>
-
-          <button @click="removeTodo(todo)">X</button>
-        </li>
-      </ol>
+        <div class="sidebar">
+            <h1>ToDoList</h1>
+            <h3>筛选</h3>
+            <ul class="catlist">
+                <li @click="filterAll"><i class="fa fa-tags"></i> 全部</li>
+                <li @click="filterTodo"><i class="fa fa-clock-o"></i> 待办</li>
+                <li @click="filterFinished"><i class="fa fa-check-circle-o"></i> 已完成</li>
+            </ul>
+        </div>
+        <div class="viewpart">
+            <div class="newTask clearfix">
+                <input type="text" placeholder="在此输入待办事项" v-model="newTodo" @keypress.enter="addTodo">
+                <span class="btn add" @click="addTodo">添加事项</span>
+                <span class="btn empty" @click="clearall">清空列表</span>
+                <span class="user">你好，{{currentUser.username}} <button class="logout" @click="logout">登出</button></span>
+            </div>
+            <ul class="todos">
+                <li v-for="todo in todoList" :class="{finished: todo.isFinished}">
+                    <span class="inactive" v-if="todo.isFinished"><i class="fa fa-circle"></i></span>
+                    <span class="active" v-else><i class="fa fa-circle"></i></span>
+                    <span @click="toggleFinish(todo)" :class="{finished: todo.isFinished}">{{todo.title}}</span>
+                    <span>创建时间：{{todo.createAt}}</span>
+                    <span class="btn del fa fa-trash-o" @click="removeTodo(todo)"></span>
+                </li>
+            </ul>
+        </div>
     </section>
-  </div>
-  <script src="bundle.js"></script>
+</div>
+<script src="bundle.js"></script>
 </body>
-
 </html>
