@@ -50,6 +50,8 @@
 
 	var _vue2 = _interopRequireDefault(_vue);
 
+	var _date = __webpack_require__(4);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var app = new _vue2.default({
@@ -77,9 +79,13 @@
 	        addTodo: function addTodo() {
 	            this.todoList.push({
 	                title: this.newTodo,
-	                createdAt: new Date(),
+	                createdAt: date(),
 	                done: false // 添加一个 done 属性
 	            });
+	            function date() {
+	                var date = new Date();
+	                return date.getTime();
+	            }
 	            this.newTodo = '';
 	        },
 	        // 加了👇这个函数
@@ -88,7 +94,15 @@
 	            );this.todoList.splice(index, 1 // 不懂 splice？赶紧看 MDN 文档！
 	            );
 	        }
+	    },
+	    filters: {
+	        formatDate: function formatDate(time) {
+	            var date = new Date(time);
+	            return (0, _date.formatDate)(date, 'yyyy-MM-dd hh:mm');
+	            //此处formatDate是一个函数，将其封装在date.js里面，便于全局使用
+	        }
 	    }
+
 	});
 
 /***/ }),
@@ -9978,6 +9992,41 @@
 	};
 	process.umask = function() { return 0; };
 
+
+/***/ }),
+/* 3 */,
+/* 4 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.formatDate = formatDate;
+	function formatDate(date, fmt) {
+	    if (/(y+)/.test(fmt)) {
+	        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+	    }
+	    var o = {
+	        'M+': date.getMonth() + 1,
+	        'd+': date.getDate(),
+	        'h+': date.getHours(),
+	        'm+': date.getMinutes(),
+	        's+': date.getSeconds()
+	    };
+	    for (var k in o) {
+	        var str = o[k] + '';
+	        if (new RegExp('(' + k + ')').test(fmt)) {
+	            fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? str : padLeftZero(str));
+	        }
+	    }
+	    return fmt;
+	};
+
+	function padLeftZero(str) {
+	    return ('00' + str).substr(str.length);
+	}
 
 /***/ })
 /******/ ]);

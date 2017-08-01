@@ -3,8 +3,22 @@
 <head>
   <meta charset=utf-8>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
     body {
-      background: #ccc;
+      background: #22d6be;
+    }
+
+    .float-left {
+      float: left;
     }
 
     #app {
@@ -33,6 +47,56 @@
 
     .todos>li {
       text-align: left;
+      height: 30px;
+      margin-bottom: 16px;
+    }
+
+    .todos>li * {
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    .todos>li .checkbox {
+      width: 30px;
+    }
+
+    .todos>li .checkbox:hover {
+      cursor: pointer;
+    }
+
+    .todos>li .input-content {
+      width: 30%;
+      background: red;
+      margin: 0 10px;
+      font-size: 18px;
+      border-radius: 4px;
+      overflow: hidden;
+      padding: 0 5px;
+    }
+
+    .todos>li .state {
+      width: 12%;
+      background: red;
+      color: #fff;
+      border-radius: 4px;
+    }
+
+    .todos>li .input-date {
+      width: 30%;
+      margin: 0 10px;
+      color: #fff;
+      background:#40403a;
+      border-radius: 4px;
+    }
+
+    .todos>li button {
+      width: 30px;
+      height: 30px;
+    }
+
+    .todos>li button:hover {
+      cursor: pointer;
     }
   </style>
 </head>
@@ -40,17 +104,16 @@
 <body>
   <div id="app">
     <div class="newTask">
-      <input type="text" v-model="newTodo" @keypress.enter="addTodo">
+      <input type="text" v-model="newTodo" placeholder="请输入你的计划" @keypress.enter="addTodo">
     </div>
     <ol class="todos">
       <li v-for="todo in todoList">
-        <input type="checkbox" v-model="todo.done"> {{ todo.title }}
-
-        <span v-if="todo.done">已完成</span>
-        <span v-else>未完成</span>
-
-        <button @click="removeTodo(todo)">X</button>
-        <!-- 👈 加了一个按钮 -->
+        <input class="checkbox float-left" type="checkbox" v-model="todo.done">
+        <span class="input-content float-left">{{ todo.title }}</span>
+        <span v-if="todo.done" class="float-left state">已完成</span>
+        <span v-else class="float-left state">未完成</span>
+        <span class=" float-left input-date">{{todo.createdAt | formatDate}}</span>
+        <button @click="removeTodo(todo)" class="float-left">X</button>
       </li>
     </ol>
   </div>
