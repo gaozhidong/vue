@@ -59,7 +59,7 @@
 	var app = new _vue2.default({
 	    el: '#app',
 	    data: {
-	        message: 'Hello Frank!'
+	        message: 'Hello vue!'
 	    }
 	});
 

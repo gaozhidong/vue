@@ -81,3 +81,6 @@ function component () {
 5. ./node_modules/.bin/webpack 就是一个可执行文件
 6. webpack、lodash 的版本号都被写在 package.json 里了
 ```
+
+### 总结：
+1. 可以引入jQuery 但是如何引入jQuery插件还没有解决
