@@ -12,9 +12,8 @@
 
 <script>
 
-import './assets/reset.css'
 import 'normalize.css/normalize.css'
-
+import './assets/reset.css'
 import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
 import ResumePreview from './components/ResumePreview'
@@ -28,11 +27,10 @@ export default {
     }
   },
   components: { Topbar, ResumeEditor, ResumePreview }
-
 }
 </script>
 
-<style>
+ <style>
 .page {
   height: 100vh;
   display: flex;
@@ -47,13 +45,11 @@ export default {
 .page>main {
   min-width: 1024px;
   max-width: 1440px;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin: 16px 0;
   display: flex;
   justify-content: space-between;
   padding: 0 16px;
   width: 100%;
-  /* 试试不加这句会怎样 */
   align-self: center;
 }
 
