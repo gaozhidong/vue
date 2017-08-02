@@ -32,3 +32,9 @@ src
 ├── main.js                # JS 入口文件，浏览器执行的第一行代码在这里
 └── router                 # 路由
 ```
+
+```bash
+ config/index.js 中的 assetsPublicPath 改为 '/vue/resumer/dist'
+ 本文件中有两处 assetsPublicPath， 改的是第一处
+```
+预览地址: <https://gaozhidong.github.io/vue/resumer/dist>
