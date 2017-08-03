@@ -26,6 +26,4 @@ let symbols = svgFiles.map(function (filename) {
 
 let js = `export default \`<svg style="display:none">\n${symbols}\n</svg>\`\n`
 
-fs.writeFileSync(jsPath, js, {
-  flag: 'w'
-})
+fs.writeFileSync(jsPath, js, {flag: 'w'})

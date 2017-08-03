@@ -1,15 +1,8 @@
 import AV from '../lib/leancloud'
-export default function (user) {
-  var {
-    id,
-    attributes: {
-      username
-    }
-  } = user || AV.User.current() || {
-    attributes: {}
-  }
+export default function(user){
+  var {id, attributes:{username}} = user || AV.User.current() || {attributes:{}}
   return {
-    id,
-    username
+    id: id || '', 
+    username: username|| ''
   }
 }
