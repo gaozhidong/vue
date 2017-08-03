@@ -84,11 +84,11 @@ export default new Vuex.Store({
       ],
       contacts: [{
           contact: 'phone',
-          content: '13812345678'
+          content: '15936939796'
         },
         {
           contact: 'qq',
-          content: '12345678'
+          content: '2630300622'
         },
       ],
     }

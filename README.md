@@ -10,8 +10,14 @@
  
 做一个简单的TodoList 使用localStorage 存储数据 使用formatDate过滤器 完成添加时间
 
-预览地址<>
+预览地址<https://gaozhidong.github.io/vue/vue-02/page.html>
 ### vue-03 
 使用 leancloud 存储数据 完成登陆登出功能
 
-预览地址<>
+预览地址<https://gaozhidong.github.io/vue/vue-03/page.html>
+
+### resume 项目简单的分布
+预览地址<https://gaozhidong.github.io/vue/resumer/dist/>
+
+### resumer-5 
+预览地址<https://gaozhidong.github.io/vue/resumer-5/dist/>
